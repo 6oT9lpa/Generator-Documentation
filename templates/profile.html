@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', path='style/root.css?v=0.0.3') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='style/profile.css?v=0.0.3') }}">
+</head>
+<body>
+    <div class="profile-container">
+        <aside class="sidebar">
+            <h2>Ваши репозитория</h2>
+            <ul class="repo-list">
+                {% for repo in repositories | sort(attribute='created_at', reverse=True) %}
+                    <li class="repo-item">
+                        <a href="{{ repo.docs_url }}" target="_blank" class="repo-link">
+                            <span class="repo-name">{{ repo.name }}</span>
+                            <span class="repo-date">{{ repo.created_at }}</span>
+                        </a>
+                        <button class="btn-delete" onclick="deleteRepo('{{ repo.id }}')" title="Удалить репозиторий">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </li>
+                {% endfor %}
+            </ul>
+        </aside>
+        
+        <main class="content">
+            <h1>Информация</h1>
+            <div class="stats">
+                <div class="stat-card">
+                    <h3>Количество загруженных репозиторий</h3>
+                    <p>{{ repositories|length }}</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Дата регистрации</h3>
+                    <p>{{ repositories[0].created_at if repositories else 'N/A' }}</p>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="{{ url_for('static', path='script/root.js?v=0.0.3') }}"></script>
+    <script src="{{ url_for('static', path='script/profile.js?v=0.0.3') }}"></script>
+</body>
+</html>

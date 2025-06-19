@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GitHub Authorization</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', path='style/root.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='style/callback.css') }}">
+</head>
+<body>
+    <div class="github-callback-container">
+        <div class="github-callback-content">
+            <h1>GitHub Authorization</h1>
+            <div class="github-loader"></div>
+            <p>Processing GitHub authorization...</p>
+            <p class="cyber-subtitle">Please wait while we connect your account</p>
+        </div>
+    </div>
+    <script>
+        window.onload = async function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const code = urlParams.get('code');
+            const state = urlParams.get('state');
+            const token = urlParams.get('token') || localStorage.getItem('access_token');
+
+            if (!token) {
+                console.error('No access token found');
+                if (window.opener) {
+                    window.opener.postMessage({
+                        type: 'github-auth-error',
+                        error: 'User not authenticated'
+                    }, '*');
+                }
+                window.close();
+                return;
+            }
+
+            try {
+                const response = await fetch(`/github/callback?code=${code}&state=${state}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    if (window.opener) {
+                        window.opener.postMessage({
+                            type: 'github-auth-success',
+                            data: result
+                        }, '*');
+                    }
+                } else {
+                    console.error('GitHub linking failed:', result);
+                    if (window.opener) {
+                        window.opener.postMessage({
+                            type: 'github-auth-error',
+                            error: result.detail || 'Failed to link GitHub account'
+                        }, '*');
+                    }
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                if (window.opener) {
+                    window.opener.postMessage({
+                        type: 'github-auth-error',
+                        error: error.message
+                    }, '*');
+                }
+            } finally {
+                window.close();
+            }
+        };
+    </script>
+</body>
+</html>

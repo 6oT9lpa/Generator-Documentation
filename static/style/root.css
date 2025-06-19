@@ -1,0 +1,130 @@
+:root {
+    /* Основные цвета */
+    --primary-color: #1d242b;
+    --secondary-color: #5c6f7e;
+    --accent-color: #ee1543;
+    --dark-color: #1d242b;
+    --light-color: #f3f2ef;
+    --neon-accent: #ff3d6d;
+    
+    /* Переработанные градиенты и эффекты */
+    --cyber-border: 1px solid rgba(238, 21, 67, 0.5);
+    --deep-space: linear-gradient(135deg, #0f1721 0%, #1d242b 100%);
+    --cyber-gradient: linear-gradient(
+        135deg, 
+        rgba(29, 36, 43, 0.9) 0%, 
+        rgba(238, 21, 67, 0.7) 50%,
+        rgba(29, 36, 43, 0.9) 100%
+    ); 
+    
+    --glass-bg: rgba(255, 255, 255, 0.1); 
+    --blur: blur(10px);
+    --border-radius: 5px;
+    --shadow: 0 8px 30px rgba(238, 21, 67, 0.2); 
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    background: var(--deep-space);
+    color: #fff;
+    overflow-x: hidden;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(12, 26, 34, 0.8);
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--deep-space);
+    border-radius: 3px;
+    background-clip: padding-box;
+    transition: var(--transition);
+}
+
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.loader-content {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(255, 255, 255, 0.5);
+    border-top: 5px solid var(--neon-accent);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    box-shadow: 0 0 20px rgba(255, 122, 122, 0.3);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.notification {
+    display: flex;
+    gap: 15px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    color: var(--primary-text-color);
+    z-index: 9999;
+    animation: slideIn 0.3s ease-out;
+    backdrop-filter: blur(10px);
+    border: 1px solid;
+    max-width: 300px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+.notification.success {
+    background: rgb(127 127 127 / 25%);
+    border-color: #7AFF7A;
+}
+
+.notification.error {
+    background: rgb(127 127 127 / 25%);
+    border-color: #FF4D4D;
+}
+
+.notification.warning {
+    background: rgb(127 127 127 / 25%);
+    border-color: #FFA500;
+}
+
+.notification.fade-out {
+    animation: fadeOut 0.5s ease-out;
+}

@@ -1,0 +1,270 @@
+/* docs.css */
+:root {
+    --sidebar-width: 280px;
+    --header-height: 60px;
+    --border-color: #e1e4e8;
+    --primary-color: #0366d6;
+    --text-color: #24292e;
+    --text-secondary: #586069;
+    --bg-color: #ffffff;
+    --sidebar-bg: #1d242b;
+    --code-bg: #f6f8fa;
+    --hover-bg: #f3f4f6;
+    --active-bg: #e1e4e8;
+    --accent-color: #ff3d6d;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    margin: 0;
+    line-height: 1.6;
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: var(--sidebar-width);
+    background-color: var(--sidebar-bg);
+    border-right: 1px solid var(--border-color);
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    overflow-y: auto;
+    padding: 20px;
+    box-sizing: border-box;
+    color: white;
+}
+
+.sidebar h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 1rem 0;
+    color: var(--text-secondary);
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.project-tree {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.project-tree ul {
+    list-style: none;
+    padding-left: 16px;
+    margin: 8px 0;
+}
+
+.project-tree li {
+    margin: 4px 0;
+}
+
+.project-tree details {
+    margin-bottom: 8px;
+}
+
+.project-tree summary {
+    font-weight: 500;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+    outline: none;
+}
+
+.project-tree summary:hover {
+    background-color: var(--hover-bg);
+}
+
+.project-tree summary::-webkit-details-marker {
+    display: none;
+}
+
+.project-tree summary:before {
+    content: " ";
+    margin-right: 8px;
+    color: var(--text-secondary);
+    display: inline-block;
+    transition: transform 0.2s;
+}
+
+.project-tree details[open] summary:before {
+    transform: rotate(90deg);
+}
+
+.tree-item {
+    display: block;
+    padding: 6px 8px;
+    text-decoration: none;
+    color: white;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.tree-item:hover {
+    background-color: var(--hover-bg);
+    color: var(--text-color);
+}
+
+.tree-item.active {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.content {
+    flex: 1;
+    max-width: calc(100% - var(--sidebar-width));
+    padding: 30px 40px;
+    box-sizing: border-box;
+}
+
+.file-header {
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.file-header h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.markdown-body {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Markdown styling */
+.markdown-body h1, 
+.markdown-body h2, 
+.markdown-body h3, 
+.markdown-body h4, 
+.markdown-body h5, 
+.markdown-body h6 {
+    margin-top: 1.5em;
+    margin-bottom: 0.8em;
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.markdown-body h1 {
+    font-size: 1.8rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.3em;
+}
+
+.markdown-body h2 {
+    font-size: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.3em;
+}
+
+.markdown-body h3 {
+    font-size: 1.25rem;
+}
+
+.markdown-body p {
+    margin: 1em 0;
+}
+
+.markdown-body ul, 
+.markdown-body ol {
+    padding-left: 2em;
+    margin: 1em 0;
+}
+
+.markdown-body li {
+    margin: 0.5em 0;
+}
+
+.markdown-body code {
+    font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    background-color: var(--code-bg);
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-size: 85%;
+}
+
+.markdown-body pre {
+    background-color: var(--code-bg);
+    border-radius: 3px;
+    padding: 16px;
+    overflow: auto;
+    line-height: 1.45;
+}
+
+.markdown-body pre code {
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
+}
+
+.markdown-body table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1em 0;
+    display: block;
+    overflow: auto;
+}
+
+.markdown-body table th {
+    font-weight: 600;
+    background-color: var(--sidebar-bg);
+}
+
+.markdown-body table th,
+.markdown-body table td {
+    padding: 6px 13px;
+    border: 1px solid var(--border-color);
+}
+
+.markdown-body table tr {
+    background-color: var(--bg-color);
+    border-top: 1px solid var(--border-color);
+}
+
+.markdown-body table tr:nth-child(2n) {
+    background-color: var(--sidebar-bg);
+}
+
+.markdown-body blockquote {
+    padding: 0 1em;
+    color: var(--text-secondary);
+    border-left: 0.25em solid var(--border-color);
+    margin: 0 0 1em 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: static;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+    }
+    
+    .content {
+        max-width: 100%;
+        padding: 20px;
+    }
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.markdown-body {
+    animation: fadeIn 0.3s ease-out;
+}

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doc-Generator - Автоматическая документация для разработчиков</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Sans+MS&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', path='style/root.css?v=0.0.18') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='style/index.css?v=0.0.2') }}">
+</head>
+<body>
+    <div class="loader" id="main-loader">
+        <div class="loader-content"></div>
+    </div>
+
+    <!-- Навигационная панель -->
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <img src="{{ url_for('static', path='img/logo.svg') }}" alt="Doc-Generator Logo" class="logo">
+        </div>
+        <div class="navbar-menu">
+            <a href="#features" class="nav-link">Возможности</a>
+            <a href="#how-it-works" class="nav-link">Как работает</a>
+            <a href="#faq" class="nav-link">FAQ</a>
+        </div>
+        <div class="navbar-actions">
+            <button class="btn btn-login">Вход</button>
+            <button class="btn btn-primary btn-register">Регистрация</button>
+            <button class="btn btn-profile" style="display:none" id="profileButton">Профиль</button>
+            <div class="theme-toggle">
+                <i class="fas fa-moon"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Главный герой-баннер -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <h1>Автоматическая документация <span class="highlight">для разработчиков</span></h1>
+            <p class="subtitle">Генерация качественной документации за секунды с помощью ИИ</p>
+            <div class="cta-buttons">
+                <button class="btn btn-primary btn-large pulse" id="repoBtn">Попробовать бесплатно</button>
+                <a href="https://github.com/6oT9lpa/Generator-Documentation" class="btn btn-outline btn-large">Документация API</a>
+            </div>
+            <div class="scroll-down">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Основной контент -->
+    <main class="container">
+        <!-- Блок о проекте -->
+        <section id="features" class="about-section">
+            <h2><span class="highlight">Почему</span> Doc-Generator?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Экономия времени</h3>
+                    <p>Больше не тратьте часы на написание документации. Наш ИИ сделает это за вас.</p>
+                    <div class="feature-hover">
+                        <p>До 90% времени сохранено!</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Для разработчиков</h3>
+                    <p>Создано разработчиками для разработчиков, которые ценят своё время.</p>
+                    <div class="feature-hover">
+                        <p>Понимаем ваши боли!</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lock-open"></i>
+                    </div>
+                    <h3>Open Source</h3>
+                    <p>Проект с открытым исходным кодом. Вклад приветствуется!</p>
+                    <div class="feature-hover">
+                        <p>Присоединяйтесь к сообществу!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Блок как это работает -->
+        <section id="how-it-works" class="how-it-works">
+            <h2><span class="highlight">Как</span> это работает?</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Подключите репозиторий</h3>
+                        <p>Авторизуйтесь через GitHub или загрузите ZIP с проектом</p>
+                    </div>
+                    <div class="step-line"></div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Анализ кода</h3>
+                        <p>Наш ИИ анализирует структуру и код вашего проекта</p>
+                    </div>
+                    <div class="step-line"></div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Получите документацию</h3>
+                        <p>Готовая документация в выбранном формате</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Блок CTA -->
+        <section class="cta-section">
+            <div class="cta-bg"></div>
+            <h2>Готовы <span class="highlight">попробовать</span>?</h2>
+            <p>Начните генерировать документацию прямо сейчас - это бесплатно!</p>
+            <button class="btn btn-primary btn-large pulse" id="repoBtn">Начать</button>
+        </section>
+    </main>
+
+    <!-- Подвал -->
+    <footer class="footer">
+        <div class="footer-wave"></div>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="brand-name">Doc-Generator</span>
+                    <p>Автоматическая генерация документации для ваших проектов</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h4>Навигация</h4>
+                        <ul>
+                            <li><a href="#features">Возможности</a></li>
+                            <li><a href="#how-it-works">Как это работает</a></li>
+                            <li><a href="#faq">FAQ</a></li>
+                            <li><a href="https://discord.gg/wUb3Js2wzt">Блог</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Контакты</h4>
+                        <ul>
+                            <li><a href="sp1vaks@yandex.ru"><i class="fas fa-envelope"></i> Email</a></li>
+                            <li><a href="https://github.com/6oT9lpa/Generator-Documentation"><i class="fab fa-github"></i> GitHub</a></li>
+                            <li><a href="https://t.me/boT9lpa"><i class="fab fa-telegram"></i> Telegram</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Разработчик</h4>
+                        <p>Создано с ❤️ p.s. 6ot9lpa</p>
+                        <p>© 2025 Все права защищены</p>
+                        <button class="btn btn-outline btn-small">Сообщить о баге</button>
+                        <button class="btn btn-outline btn-small">Поддержать создателя</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Вход в аккаунт</h2>
+            <form id="loginForm" class="auth-form">
+                <div class="form-group">
+                    <label for="loginUsername">Никнейм или Email</label>
+                    <input type="text" id="loginUsername" name="loginUsername" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Пароль</label>
+                    <input type="password" id="loginPassword" name="loginPassword" required>
+                    <div class="password-toggle">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Войти</button>
+                <p class="form-footer">Нет аккаунта? <a href="#" id="showRegister">Зарегистрироваться</a></p>
+            </form>
+        </div>
+    </div>
+
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Регистрация</h2>
+            <form id="registerForm" class="auth-form">
+                <div class="form-group">
+                    <label for="regEmail">Email</label>
+                    <input type="email" id="regEmail" name="regEmail" required>
+                    <div class="error-message" id="emailError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="regUsername">Никнейм</label>
+                    <input type="text" id="regUsername" name="regUsername" minlength="3" maxlength="20" required>
+                    <div class="error-message" id="usernameError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="regPassword">Пароль</label>
+                    <input type="password" id="regPassword" name="regPassword" required>
+                    <div class="password-strength">
+                        <div class="strength-meter">
+                            <div class="strength-bar"></div>
+                        </div>
+                        <span class="strength-text">Сложность: слабый</span>
+                    </div>
+                    <div class="password-toggle">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="regConfirmPassword">Подтвердите пароль</label>
+                    <input type="password" id="regConfirmPassword" required>
+                    <div class="error-message" id="passwordError"></div>
+                </div>
+                <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+                <p class="form-footer">Уже есть аккаунт? <a href="#" id="showLogin">Войти</a></p>
+            </form>
+        </div>
+    </div>
+
+    <div id="repoModal" class="modal">
+        <div class="modal-content repo-modal">
+            <span class="close-modal">&times;</span>
+            <h2>Отправить проект</h2>
+            <div class="repo-options">
+                <div class="repo-option active" id="optionLink">
+                    <i class="fab fa-github"></i>
+                    <span>Ссылка на GitHub</span>
+                </div>
+                <div class="repo-option" id="optionZip">
+                    <i class="fas fa-file-archive"></i>
+                    <span>ZIP архив</span>
+                </div>
+            </div>
+            
+            <form id="repoForm" class="repo-form">
+                <div class="form-group repo-link-group">
+                    <label for="repoUrl">Ссылка на репозиторий</label>
+                    <input type="url" id="repoUrl" placeholder="https://github.com/username/repo">
+                    <div class="error-message" id="urlError"></div>
+                </div>
+
+                <div class="form-group repo-file-group" style="display: none;">
+                    <label for="repoFile">Загрузить ZIP архив (макс. 100 МБ)</label>
+                    <div class="file-upload">
+                        <input type="file" id="repoFile" accept=".zip,.rar,.7zip">
+                        <label for="repoFile" class="file-label">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <span class="file-text">Выберите файл</span>
+                        </label>
+                        <div class="file-info"></div>
+                    </div>
+                    <div class="error-message" id="fileError"></div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-large">Отправить</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', path='script/root.js?v=0.0.21') }}"></script>
+    <script src="{{ url_for('static', path='script/index.js?v=0.0.21') }}"></script>
+</body>
+</html>

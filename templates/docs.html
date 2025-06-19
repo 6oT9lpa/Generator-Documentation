@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation Viewer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', path='style/docs.css?v=0.0.2') }}">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Project Structure</h2>
+        <ul class="project-tree" id="projectTree">
+            {% for group in project_structure %}
+            <li>
+                <details open>
+                    <summary>{{ group.group }}</summary>
+                    <ul>
+                        {% for file in group.files %}
+                        <li>
+                            <a href="#" class="tree-item" data-file="{{ file.path }}">{{ file.name }}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </details>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+    <div class="content">
+        <div class="file-header">
+            <h1 id="fileName">Documentation</h1>
+        </div>
+        <div class="markdown-body" id="markdownContent">
+            Loading content...
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.2.12/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="{{ url_for('static', path='script/docs.js?v=0.0.4') }}"></script>
+    <script>
+        const userId = "{{ user_id }}";
+        const repoId = "{{ repo_id }}";
+    </script>
+</body>
+</html>

@@ -1,0 +1,233 @@
+/* profile.css */
+:root {
+    --sidebar-width: 350px;
+    --profile-primary: var(--primary-color);
+    --profile-accent: var(--accent-color);
+    --profile-light: var(--light-color);
+    --profile-dark: var(--dark-color);
+    --profile-text: var(--light-color);
+    --profile-bg: var(--deep-space);
+    --profile-border: var(--cyber-border);
+    --profile-shadow: var(--shadow);
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: var(--profile-text);
+    background: var(--profile-bg);
+    overflow-x: hidden;
+}
+
+.profile-container {
+    display: flex;
+    min-height: 100vh;
+    padding-top: 70px;
+}
+
+.sidebar {
+    width: var(--sidebar-width);
+    background: rgba(29, 36, 43, 0.7);
+    backdrop-filter: var(--blur);
+    padding: 1.5rem;
+    border-right: var(--profile-border);
+    box-shadow: var(--profile-shadow);
+    overflow-y: auto;
+    position: fixed;
+    left: 0;
+    top: 70px;
+    height: calc(100vh - 10vh);
+}
+
+.sidebar h2 {
+    color: var(--neon-accent);
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.content {
+    flex: 1;
+    padding: 2rem;
+    margin-left: var(--sidebar-width);
+    background: var(--profile-bg);
+}
+
+.repo-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.repo-item {
+    margin-bottom: 0.5rem;
+}
+
+.repo-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-radius: var(--border-radius);
+    color: var(--profile-text);
+    text-decoration: none;
+    transition: var(--transition);
+    background: rgba(29, 36, 43, 0.5);
+    border: var(--profile-border);
+}
+
+.repo-link:hover {
+    background: rgba(238, 21, 67, 0.2);
+    color: var(--neon-accent);
+}
+
+.repo-name {
+    font-weight: 500;
+}
+
+.repo-date {
+    font-size: 0.875rem;
+    color: var(--secondary-color);
+}
+
+.stats {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.stat-card {
+    background: rgba(29, 36, 43, 0.7);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--profile-shadow);
+    min-width: 200px;
+    border: var(--profile-border);
+    backdrop-filter: var(--blur);
+    flex: 1;
+    min-width: 250px;
+    transition: var(--transition);
+}
+
+.stat-card:hover {
+    box-shadow: 0 15px 30px rgba(238, 21, 67, 0.2);
+}
+
+.stat-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    color: var(--neon-accent);
+}
+
+.stat-card p {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--profile-text);
+}
+
+.content h1 {
+    color: var(--neon-accent);
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    position: relative;
+    display: inline-block;
+}
+
+.content h1::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--neon-accent);
+}
+
+@media (max-width: 768px) {
+    .profile-container {
+        flex-direction: column;
+        padding-top: 60px;
+    }
+    
+    .sidebar {
+        width: 100%;
+        position: static;
+        max-height: none;
+        border-right: none;
+        border-bottom: var(--profile-border);
+    }
+    
+    .content {
+        margin-left: 0;
+    }
+    
+    .stats {
+        flex-direction: column;
+    }
+}
+
+.btn-delete {
+    background: transparent;
+    border: none;
+    color: var(--neon-accent);
+    cursor: pointer;
+    padding: 0.5rem;
+    margin-left: 0.5rem;
+    transition: var(--transition);
+}
+
+.btn-delete:hover {
+    color: #ff0000;
+    transform: scale(1.1);
+}
+
+.btn-delete {
+    background: rgba(255, 0, 0, 0.1);
+    border: 1px solid rgba(255, 0, 0, 0.3);
+    color: #ff6b6b;
+    cursor: pointer;
+    padding: 0.5rem;
+    margin-left: 0.5rem;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-delete:hover {
+    background: rgba(255, 0, 0, 0.2);
+    color: #ff0000;
+    transform: scale(1.1);
+}
+
+.btn-delete i {
+    font-size: 14px;
+}
+
+.repo-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.repo-link {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-radius: var(--border-radius);
+    color: var(--profile-text);
+    text-decoration: none;
+    transition: var(--transition);
+    background: rgba(29, 36, 43, 0.5);
+    border: var(--profile-border);
+}
